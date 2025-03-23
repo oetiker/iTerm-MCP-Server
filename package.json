@@ -1,6 +1,6 @@
 {
   "name": "iterm_mcp_server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Model Context Protocol (MCP) server implementation for iTerm2 terminal integration",
   "main": "index.js",
   "type": "module",
