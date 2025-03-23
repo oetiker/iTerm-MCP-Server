@@ -1,11 +1,11 @@
 {
   "name": "iterm_mcp_server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Model Context Protocol (MCP) server implementation for iTerm2 terminal integration",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "iterm_mcp_server": "./index.js"
+    "iterm_mcp_server": "index.js"
   },
   "scripts": {
     "start": "node index.js",
@@ -23,7 +23,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rishabkoul/iTerm-MCP-Server"
+    "url": "git+https://github.com/rishabkoul/iTerm-MCP-Server.git"
   },
   "bugs": {
     "url": "https://github.com/rishabkoul/iTerm-MCP-Server/issues"
