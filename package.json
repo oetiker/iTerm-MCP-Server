@@ -4,6 +4,9 @@
   "description": "A Model Context Protocol (MCP) server implementation for iTerm2 terminal integration",
   "main": "index.js",
   "type": "module",
+  "bin": {
+    "iterm_mcp_server": "./index.js"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
