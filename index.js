@@ -226,6 +226,9 @@ server.tool(
 
     terminals.delete(terminalId);
 
+    // Safely decrement the terminal counter
+    terminalCounter = Math.max(0, terminalCounter - 1);
+
     return {
       content: [
         {
