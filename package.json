@@ -13,19 +13,29 @@
     "iterm",
     "iterm2",
     "terminal",
-    "model-context-protocol"
+    "model-context-protocol",
+    "cursor-ide"
   ],
   "author": "Rishab Koul",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rishabkoul/TerminalMcp"
+    "url": "https://github.com/rishabkoul/iTerm-MCP-Server"
   },
+  "bugs": {
+    "url": "https://github.com/rishabkoul/iTerm-MCP-Server/issues"
+  },
+  "homepage": "https://github.com/rishabkoul/iTerm-MCP-Server#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
     "zod": "^3.24.2"
   },
   "engines": {
     "node": ">=14.0.0"
-  }
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ]
 }
