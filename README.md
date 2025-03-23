@@ -38,15 +38,13 @@ To use this server with Cursor, add the following configuration to your `~/.curs
 
 ```
 
-## API Endpoints
+## Tools
 
-The server implements the following MCP endpoints:
-
-- `mcp_terminal_open_terminal`: Open a new terminal instance
-- `mcp_terminal_execute_command`: Execute a command in a specific terminal
-- `mcp_terminal_read_output`: Read the output from a specific terminal
-- `mcp_terminal_close_terminal`: Close a specific terminal
-- `mcp_terminal_list_terminals`: List all active terminals and their information
+- `open_terminal`: Open a new terminal instance
+- `execute_command`: Execute a command in a specific terminal
+- `read_output`: Read the output from a specific terminal
+- `close_terminal`: Close a specific terminal
+- `list_terminals`: List all active terminals and their information
 
 ## Security Considerations
 
