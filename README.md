@@ -10,26 +10,11 @@ A Model Context Protocol (MCP) server implementation for iTerm2 terminal integra
 - List active terminals
 - Close terminals
 
-## Installation
-
-```bash
-npm install iterm_mcp
-```
-
 ## Requirements
 
 - Node.js >= 14.x
 - iTerm2
 - macOS (since iTerm2 is macOS-only)
-
-## Usage
-
-```javascript
-import { startServer } from "iterm_mcp";
-
-// Start the MCP server
-startServer();
-```
 
 ## Configuration
 
@@ -45,14 +30,13 @@ To use this server with Cursor, add the following configuration to your `~/.curs
 {
   "mcpServers": {
     "terminal": {
-      "command": "node",
-      "args": ["/path/to/your/TerminalMcp/index.js"]
+      "command": "npx",
+      "args": ["iterm_mcp_server"]
     }
   }
 }
-```
 
-Replace `/path/to/your/TerminalMcp/index.js` with the actual path to your `index.js` file.
+```
 
 ## API Endpoints
 
