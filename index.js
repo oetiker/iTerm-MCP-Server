@@ -13,24 +13,18 @@ let terminalCounter = 0;
 // Helper function to execute AppleScript for iTerm
 async function executeITermScript(script) {
   const execPromise = promisify(exec);
-
-  // Simple launch script
-  const launchScript = `
-    tell application "iTerm"
-      activate
-    end tell
-  `;
-
+  
   try {
-    // First try to launch/activate iTerm
-    await execPromise(`osascript -e '${launchScript}'`);
-
-    // Wait a brief moment
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Now execute the actual script with iTerm instead of iTerm2
-    const modifiedScript = script.replace(/iTerm2/g, "iTerm");
-    const { stdout } = await execPromise(`osascript -e '${modifiedScript}'`);
+    // Use osascript with here-doc for better handling of complex scripts
+    // This avoids issues with quotes and special characters in AppleScript
+    const { stdout, stderr } = await execPromise(`osascript <<'EOF'
+${script}
+EOF`);
+    
+    if (stderr) {
+      console.error("iTerm AppleScript warning:", stderr);
+    }
+    
     return stdout.trim();
   } catch (error) {
     console.error("iTerm AppleScript error:", error);
