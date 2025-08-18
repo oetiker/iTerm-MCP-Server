@@ -219,7 +219,7 @@ ISC
 
 ## Author
 
-Rishab Koul
+Rishab Koul  
 Tobi Oetiker
 
 ## Acknowledgments
