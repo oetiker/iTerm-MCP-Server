@@ -220,6 +220,7 @@ ISC
 ## Author
 
 Rishab Koul
+Tobi Oetiker
 
 ## Acknowledgments
 
