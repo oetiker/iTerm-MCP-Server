@@ -6,9 +6,11 @@ A Model Context Protocol (MCP) server implementation for iTerm2 terminal integra
 
 - Create and manage iTerm2 terminal sessions
 - Execute commands in specific terminals
-- Read terminal output
+- Read terminal output including TUI applications
+- Send keystrokes for TUI interaction (arrow keys, tab, enter, etc.)
 - Clear terminal screens
 - List and track active terminals
+- VS Code and Electron-based editor compatibility
 - Proper command escaping for security
 
 ## Requirements
@@ -135,9 +137,40 @@ Lists all active terminals and their information.
 
 **Returns**: List of active terminal IDs and iTerm status
 
-## Usage Example
+### `send-keys`
+Send keystrokes or text to a terminal for TUI interaction.
 
-Here's how an AI assistant might use these tools:
+**Parameters**:
+- `terminalId` (string, required): ID of the terminal
+- `keys` (string, optional): Special keys to send (tab, enter, escape, arrows, etc.)
+- `text` (string, optional): Regular text to type
+
+**Special Keys Supported**:
+- Navigation: `tab`, `shift-tab`, `enter`, `escape`, `backspace`, `delete`
+- Arrows: `up`, `down`, `left`, `right`
+- Movement: `home`, `end`, `pageup`, `pagedown`
+- Control: `ctrl-a` through `ctrl-z`
+- Function: `f1` through `f12`
+
+**Example**:
+```json
+{
+  "terminalId": "terminal-0",
+  "keys": "tab"
+}
+```
+
+**Example for text**:
+```json
+{
+  "terminalId": "terminal-0",
+  "text": "password123"
+}
+```
+
+## Usage Examples
+
+### Basic Terminal Interaction
 
 ```javascript
 // Open a new terminal
@@ -166,6 +199,51 @@ await use_mcp_tool("iterm", "close-terminal", {
 });
 ```
 
+### TUI Application Testing
+
+```javascript
+// Open terminal and run a TUI app
+const terminal = await use_mcp_tool("iterm", "open-terminal");
+await use_mcp_tool("iterm", "execute-command", {
+  terminalId: "terminal-0",
+  command: "vim test.txt"
+});
+
+// Navigate with arrow keys
+await use_mcp_tool("iterm", "send-keys", {
+  terminalId: "terminal-0",
+  keys: "down"
+});
+
+// Enter insert mode
+await use_mcp_tool("iterm", "send-keys", {
+  terminalId: "terminal-0",
+  text: "i"
+});
+
+// Type some text
+await use_mcp_tool("iterm", "send-keys", {
+  terminalId: "terminal-0",
+  text: "Hello, World!"
+});
+
+// Exit insert mode
+await use_mcp_tool("iterm", "send-keys", {
+  terminalId: "terminal-0",
+  keys: "escape"
+});
+
+// Save and quit
+await use_mcp_tool("iterm", "send-keys", {
+  terminalId: "terminal-0",
+  text: ":wq"
+});
+await use_mcp_tool("iterm", "send-keys", {
+  terminalId: "terminal-0",
+  keys: "enter"
+});
+```
+
 ## Troubleshooting
 
 ### Common Issues
@@ -175,6 +253,10 @@ await use_mcp_tool("iterm", "close-terminal", {
 2. **Permission denied errors**: macOS may require permissions for terminal automation. Check System Preferences > Security & Privacy > Privacy > Automation.
 
 3. **Commands not executing**: Verify the terminal ID is correct using `list-terminals`.
+
+4. **VS Code focus issues**: The server now properly handles VS Code and other Electron-based editors. If you experience focus issues, ensure you're using version 1.0.6 or later.
+
+5. **Special keys not working**: The `send-keys` function uses iTerm2's native text input. Some complex key combinations may require specific escape sequences.
 
 ### Debug Mode
 

@@ -1,7 +1,7 @@
 {
   "name": "iterm_mcp_server",
-  "version": "1.0.4",
-  "description": "A Model Context Protocol (MCP) server implementation for iTerm2 terminal integration",
+  "version": "1.0.5",
+  "description": "MCP server for iTerm2 terminal automation. Enables AI assistants to open terminals, execute commands, read output, and interact with TUI applications through keyboard input. Supports VS Code and other Electron-based editors.",
   "main": "index.js",
   "type": "module",
   "bin": {
